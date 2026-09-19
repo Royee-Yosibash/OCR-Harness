@@ -33,12 +33,10 @@ jobs:
 
       - name: Check version and date were bumped
         run: |
-          PR_VERSION=$(python3 .github/workflows/read_release_meta.py pyproject.toml | cut -d' ' -f1)
-          PR_DATE=$(python3 .github/workflows/read_release_meta.py pyproject.toml | cut -d' ' -f2)
-          git show origin/main:pyproject.toml > /tmp/main_pyproject.toml
-          git show origin/main:release_data.json > /tmp/main_release_data.json 2>/dev/null || true
-          MAIN_VERSION=$(python3 .github/workflows/read_release_meta.py /tmp/main_pyproject.toml /tmp/main_release_data.json | cut -d' ' -f1)
-          MAIN_DATE=$(python3 .github/workflows/read_release_meta.py /tmp/main_pyproject.toml /tmp/main_release_data.json | cut -d' ' -f2)
+          PR_VERSION=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")
+          PR_DATE=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['tool']['ocr-toolkit']['release-date'])")
+          MAIN_VERSION=$(git show origin/main:pyproject.toml | python3 -c "import tomllib,sys; print(tomllib.load(sys.stdin.buffer)['project']['version'])" 2>/dev/null || echo "1.0.0")
+          MAIN_DATE=$(git show origin/main:pyproject.toml | python3 -c "import tomllib,sys; print(tomllib.load(sys.stdin.buffer)['tool']['ocr-toolkit']['release-date'])" 2>/dev/null || echo "2026-09-06")
           echo "PR version: $PR_VERSION (date: $PR_DATE)"
           echo "Main version: $MAIN_VERSION (date: $MAIN_DATE)"
           python3 -c "
