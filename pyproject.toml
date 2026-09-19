@@ -5,7 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ocr-toolkit"
 dynamic = ["version"]
-description = "OCR toolkit package that improves performances and allows evaluations for different use cases"
+description = "A unified toolkit for integrating, benchmarking, and comparing OCR engines with modular preprocessing and evaluation."
+readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
@@ -39,6 +40,9 @@ full = [
 
 [tool.setuptools.dynamic]
 version = {attr = "consts.__version__"}
+
+[tool.setuptools]
+py-modules = ["consts"]
 
 [tool.setuptools.packages.find]
 include = ["ocr_backbone*", "ocr_modules*", "evaluation*", "utils*", "scripts*", "tagging_tool*"]
