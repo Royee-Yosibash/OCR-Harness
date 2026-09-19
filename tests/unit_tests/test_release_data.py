@@ -2,7 +2,6 @@ import re
 import tomllib
 import unittest
 from datetime import datetime
-from pathlib import Path
 
 from consts import APP_ROOT
 
