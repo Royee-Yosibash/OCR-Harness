@@ -25,6 +25,8 @@ ocrs = [
     "paddleocr>=3.4.0",
     "paddlepaddle==3.2.0",
     "pytesseract>=0.3.10",
+    "torch==2.13.0",
+    "torchvision==0.28.0",
 ]
 dev = [
     "pre-commit",
