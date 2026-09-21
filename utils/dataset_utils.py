@@ -18,7 +18,7 @@ DATASET_DIR = APP_ROOT / "dataset"
 IMAGES_DIR = "images"
 TAGS_DIR = "ground_truth"
 
-DATASET_SAMPLE_ZIP_URL = "https://github.com/Royee-Yosibash/OCR-Toolkit/releases/download/v0.1.7/dataset.zip"
+DATASET_SAMPLE_ZIP_URL = "https://github.com/Royee-Yosibash/OCR-Harness/releases/download/v0.1.7/dataset.zip"
 
 logger = logging.getLogger(__name__)
 

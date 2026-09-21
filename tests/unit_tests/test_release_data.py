@@ -21,7 +21,7 @@ class TestReleaseData(unittest.TestCase):
         """Verifies that all release metadata is declared in pyproject.toml."""
         self.assertIn("version", self.pyproject["project"])
         self.assertGreater(len(self.pyproject["project"].get("authors", [])), 0)
-        self.assertIn("release-date", self.pyproject["tool"]["ocr-toolkit"])
+        self.assertIn("release-date", self.pyproject["tool"]["ocr-harness"])
 
     def test_version_is_valid_semver(self):
         """Verifies that the version string matches the MAJOR.MINOR.PATCH format."""
@@ -37,7 +37,7 @@ class TestReleaseData(unittest.TestCase):
 
     def test_release_date_is_valid_iso8601(self):
         """Verifies that the release date is a valid ISO 8601 date (YYYY-MM-DD)."""
-        date_str = self.pyproject["tool"]["ocr-toolkit"]["release-date"]
+        date_str = self.pyproject["tool"]["ocr-harness"]["release-date"]
         try:
             datetime.strptime(date_str, ISO_DATE_FORMAT)
         except ValueError:
