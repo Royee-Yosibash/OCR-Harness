@@ -8,6 +8,7 @@ from ocr_backbone.ocr_config import OCRConfig
 from ocr_backbone.ocr_result import OCRResult
 from ocr_modules.easyocr_module import EasyOCRModule
 from tests.consts import TEST_IMAGE_PATH
+from tests.ocr_result_comparison import ocr_result_mismatch_summary
 from utils.json_utils import load_json
 
 EXPECTED_DIR = Path(__file__).parent / "expected"
@@ -26,7 +27,8 @@ class TestEasyOCRRegression(unittest.TestCase):
         expected = OCRResult.from_dict(load_json(expected_result_path))
 
         confidence_tolerance = 0.5  # TODO: High tolerance due to CPU/GPU machines giving different outputs. Fix.
-        self.assertTrue(
-            result.is_close(expected, confidence_tolerance=confidence_tolerance),
-            msg=f"Expected: {expected}\n Result: {result}",
-        )
+        mismatches = ocr_result_mismatch_summary(result, expected, confidence_tolerance=confidence_tolerance)
+        if mismatches:
+            print(f"OCR output differs from expected:\n{'\n'.join(mismatches)}")
+        msg = f"OCR output differs from expected: {'; '.join(mismatches[:5])}" if mismatches else ""
+        self.assertTrue(not mismatches, msg=msg)
