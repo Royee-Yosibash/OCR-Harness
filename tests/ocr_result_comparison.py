@@ -32,10 +32,7 @@ def ocr_result_mismatch_summary(
         return []
 
     if len(actual.detections) != len(expected.detections):
-        return [
-            f"Detection count mismatch: expected {len(expected.detections)}, "
-            f"got {len(actual.detections)}."
-        ]
+        return [f"Detection count mismatch: expected {len(expected.detections)}, got {len(actual.detections)}."]
 
     issues = []
     for i, (a, e) in enumerate(zip(actual.detections, expected.detections, strict=True)):
