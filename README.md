@@ -131,7 +131,7 @@ One command, two configs, and the trade-off is quantified.
 
 ## Versioning
 
-Current version: **1.0.2** (released 2026-09-20).
+Current version: **1.0.3** (released 2026-09-22).
 
 ## Installation
 

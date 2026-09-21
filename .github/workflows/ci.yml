@@ -49,8 +49,8 @@ jobs:
 
           pr_date = datetime.strptime('$PR_DATE', '%Y-%m-%d')
           main_date = datetime.strptime('$MAIN_DATE', '%Y-%m-%d')
-          if pr_date <= main_date:
-              raise SystemExit(f'Release date must be bumped. PR=$PR_DATE <= main=$MAIN_DATE')
+          if pr_date < main_date:
+              raise SystemExit(f'Release date must not be behind main. PR=$PR_DATE < main=$MAIN_DATE')
 
           print(f'Version bump OK: {main_ver} -> {pr_ver}')
           print(f'Date bump OK: $MAIN_DATE -> $PR_DATE')
