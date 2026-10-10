@@ -1,7 +1,7 @@
 import unittest
 
-from src.ocr_harness.ocr_backbone.bounding_box import BoundingBox
-from src.ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
 from tests.ocr_result_comparison import ocr_result_mismatch_summary
 
 

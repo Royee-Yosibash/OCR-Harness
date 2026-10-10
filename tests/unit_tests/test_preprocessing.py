@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 
-from src.ocr_harness.ocr_backbone.image_preprocessing import binarize, contour_split_image, crop_image, grid_split_image
-from src.ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.ocr_backbone.image_preprocessing import binarize, contour_split_image, crop_image, grid_split_image
+from ocr_harness.ocr_backbone.input_image import InputImage
 
 
 class TestGridSplitImage(unittest.TestCase):

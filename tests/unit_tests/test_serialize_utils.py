@@ -1,6 +1,6 @@
 import unittest
 
-from src.ocr_harness.utils import TYPE_KEY, SerializableClass
+from ocr_harness.utils import TYPE_KEY, SerializableClass
 
 
 class Inner(SerializableClass):

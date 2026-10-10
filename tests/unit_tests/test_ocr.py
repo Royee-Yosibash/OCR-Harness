@@ -3,13 +3,13 @@ from functools import partial
 
 import numpy as np
 
-from src.ocr_harness.ocr_backbone.image_preprocessing import binarize, grid_split_image
-from src.ocr_harness.ocr_backbone.input_image import InputImage
-from src.ocr_harness.ocr_backbone import OCRAbstract
-from src.ocr_harness.ocr_backbone.ocr_config import VALID_PP_RETURN_TYPES, OCRConfig
-from src.ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.ocr_backbone import OCRAbstract
+from ocr_harness.ocr_backbone.image_preprocessing import binarize, grid_split_image
+from ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.ocr_backbone.ocr_config import VALID_PP_RETURN_TYPES, OCRConfig
+from ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.utils import validate_callable_signature
 from tests.unit_tests.dummy_ocr import DummyOCR
-from src.ocr_harness.utils import validate_callable_signature
 
 
 def _validate_pp(method):

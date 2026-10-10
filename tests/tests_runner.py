@@ -7,7 +7,6 @@ TEST_PATTERN = "test_*.py"
 
 def run_all_tests():
     """Discover and run all unit, regression, and application tests."""
-
     loader = unittest.TestLoader()
     suite = loader.discover(start_dir=str(TESTS_DIR), pattern=TEST_PATTERN, top_level_dir=str(TESTS_DIR.parent))
 

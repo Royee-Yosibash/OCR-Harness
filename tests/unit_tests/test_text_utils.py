@@ -1,6 +1,6 @@
 import unittest
 
-from src.ocr_harness.utils import normalize_text
+from ocr_harness.utils import normalize_text
 
 
 class TestNormalizeText(unittest.TestCase):

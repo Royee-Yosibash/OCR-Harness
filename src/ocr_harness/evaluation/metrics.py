@@ -10,10 +10,10 @@ from collections import Counter
 from collections.abc import Sequence
 from typing import ClassVar
 
-from evaluation.ocr_ground_truth import OCRGroundTruth
-from ocr_backbone.ocr_result import OCRResult
-from utils.serialize_utils import register_unique
-from utils.text_utils import normalize_text
+from ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.utils.serialize_utils import register_unique
+from ocr_harness.utils.text_utils import normalize_text
 
 
 class Metric(ABC):

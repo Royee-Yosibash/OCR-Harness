@@ -11,10 +11,10 @@ from flask import Flask, jsonify, render_template, request
 from PIL import Image
 from werkzeug.exceptions import HTTPException
 
-from src.ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
-from src.ocr_harness.ocr_backbone import OCRAbstract
-from src.ocr_harness.ocr_modules import import_all_modules
-from src.ocr_harness.utils.json_utils import save_json
+from ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
+from ocr_harness.ocr_backbone import OCRAbstract
+from ocr_harness.ocr_modules import import_all_modules
+from ocr_harness.utils.json_utils import save_json
 
 logger = logging.getLogger(__name__)
 

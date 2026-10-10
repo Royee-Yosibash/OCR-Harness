@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
-from ocr_backbone.polygon import Polygon
-from utils.serialize_utils import SerializableClass
+from ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.utils.serialize_utils import SerializableClass
 
 
 @dataclass

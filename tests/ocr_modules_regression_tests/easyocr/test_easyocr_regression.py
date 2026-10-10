@@ -4,10 +4,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from src.ocr_harness.ocr_backbone.ocr_config import OCRConfig
-from src.ocr_harness.ocr_backbone.ocr_result import OCRResult
-from src.ocr_harness.ocr_modules.easyocr_module import EasyOCRModule
-from src.ocr_harness.utils.json_utils import load_json
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_modules.easyocr_module import EasyOCRModule
+from ocr_harness.utils.json_utils import load_json
 from tests.consts import TEST_IMAGE_PATH
 from tests.ocr_result_comparison import ocr_result_mismatch_summary
 

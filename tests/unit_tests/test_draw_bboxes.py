@@ -5,8 +5,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from ocr_harness.utils.json_utils import save_json
 from scripts.draw_bboxes import draw_bboxes
-from src.ocr_harness.utils.json_utils import save_json
 
 
 class TestDrawBboxes(unittest.TestCase):

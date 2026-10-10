@@ -29,13 +29,13 @@ from typing import TypedDict
 
 import numpy as np
 
-from evaluation.metrics import Metric
-from evaluation.ocr_ground_truth import OCRGroundTruth
-from ocr_backbone.ocr_abstract import OCRAbstract
-from ocr_backbone.ocr_result import OCRResult
-from utils.dataset_utils import OCRDataset
-from utils.json_utils import load_json, save_json
-from utils.statistics import beta_ci, bootstrap_ci
+from ocr_harness.evaluation.metrics import Metric
+from ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
+from ocr_harness.ocr_backbone.ocr_abstract import OCRAbstract
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.utils.dataset_utils import OCRDataset
+from ocr_harness.utils.json_utils import load_json, save_json
+from ocr_harness.utils.statistics import beta_ci, bootstrap_ci
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,6 @@
 import unittest
 
-from src.ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from ocr_harness.ocr_backbone.bounding_box import BoundingBox
 
 
 class TestBoundingBox(unittest.TestCase):

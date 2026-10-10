@@ -18,13 +18,13 @@ import argparse
 import logging
 from pathlib import Path
 
-from src.ocr_harness.evaluation.evaluation_analysis import plot_metric_comparison, plot_radar, plot_stat_range
-from src.ocr_harness.evaluation.evaluation_pipeline import AggregateResult, evaluation_pipeline
-from src.ocr_harness.evaluation.metrics import Metric
-from src.ocr_harness.ocr_backbone import OCRAbstract
-from src.ocr_harness.ocr_backbone.ocr_config import OCRConfig, load_config
-from src.ocr_harness.ocr_modules import import_all_modules
-from src.ocr_harness.utils.logging_config import configure_logging
+from ocr_harness.evaluation.evaluation_analysis import plot_metric_comparison, plot_radar, plot_stat_range
+from ocr_harness.evaluation.evaluation_pipeline import AggregateResult, evaluation_pipeline
+from ocr_harness.evaluation.metrics import Metric
+from ocr_harness.ocr_backbone import OCRAbstract
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig, load_config
+from ocr_harness.ocr_modules import import_all_modules
+from ocr_harness.utils.logging_config import configure_logging
 
 ALL_METRICS = [cls() for cls in Metric._registry.values()]
 

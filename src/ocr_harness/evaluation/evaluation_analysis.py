@@ -10,8 +10,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from evaluation.evaluation_pipeline import ALL_TAGS_KEY, AggregateResult
-from evaluation.metrics import Metric
+from ocr_harness.evaluation.evaluation_pipeline import ALL_TAGS_KEY, AggregateResult
+from ocr_harness.evaluation.metrics import Metric
 
 logger = logging.getLogger(__name__)
 

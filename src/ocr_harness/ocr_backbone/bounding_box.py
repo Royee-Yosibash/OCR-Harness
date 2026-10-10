@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ocr_backbone.polygon import Polygon
+from ocr_harness.ocr_backbone.polygon import Polygon
 
 
 @dataclass

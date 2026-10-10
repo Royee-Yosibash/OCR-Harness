@@ -2,16 +2,16 @@ from dataclasses import dataclass, field, fields
 from pathlib import Path
 from typing import Protocol, runtime_checkable
 
-import ocr_backbone.image_preprocessing as image_preprocessing
-from ocr_backbone.input_image import InputImage
-from ocr_backbone.polygon import Polygon
-from utils.callable_descriptors import (
+from ocr_harness.ocr_backbone import image_preprocessing
+from ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.utils.callable_descriptors import (
     resolve_callable_descriptor,
     serialize_callable_descriptor,
     validate_callable_signature,
 )
-from utils.json_utils import load_json
-from utils.serialize_utils import TYPE_KEY, SerializableClass
+from ocr_harness.utils.json_utils import load_json
+from ocr_harness.utils.serialize_utils import TYPE_KEY, SerializableClass
 
 PPReturnType = InputImage | list[InputImage]
 VALID_PP_RETURN_TYPES = (InputImage, list[InputImage], PPReturnType)

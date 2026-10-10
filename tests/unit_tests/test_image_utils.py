@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from src.ocr_harness.utils.image_utils import to_rgb
+from ocr_harness.utils.image_utils import to_rgb
 
 
 class TestToRGB(unittest.TestCase):

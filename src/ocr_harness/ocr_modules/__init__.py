@@ -37,4 +37,4 @@ def import_all_modules() -> None:
     """
     package_path = Path(__file__).parent
     for _, name, _ in pkgutil.iter_modules([str(package_path)]):
-        importlib.import_module(f"ocr_modules.{name}")
+        importlib.import_module(f"{__package__}.{name}")
