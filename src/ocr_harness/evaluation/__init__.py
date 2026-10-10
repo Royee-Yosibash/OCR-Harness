@@ -8,6 +8,6 @@ any consumer touches the package. Add a line here when introducing a
 new ``SerializableClass`` subclass under ``evaluation/``.
 """
 
-from evaluation.ocr_ground_truth import OCRGroundTruth
+from src.ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
 
 __all__ = ["OCRGroundTruth"]
