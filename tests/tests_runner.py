@@ -5,6 +5,7 @@ from pathlib import Path
 TESTS_DIR = Path(__file__).resolve().parent
 TEST_PATTERN = "test_*.py"
 
+
 def run_all_tests():
     """Discover and run all unit, regression, and application tests."""
     loader = unittest.TestLoader()
