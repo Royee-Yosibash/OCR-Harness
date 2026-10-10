@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 
 from scripts.draw_bboxes import draw_bboxes
-from utils.json_utils import save_json
+from src.ocr_harness.utils.json_utils import save_json
 
 
 class TestDrawBboxes(unittest.TestCase):

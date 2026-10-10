@@ -1,7 +1,7 @@
 import unittest
 
-from ocr_backbone.bounding_box import BoundingBox
-from ocr_backbone.ocr_result import OCRResult
+from src.ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from src.ocr_harness.ocr_backbone.ocr_result import OCRResult
 
 
 class TestOCRResult(unittest.TestCase):

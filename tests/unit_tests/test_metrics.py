@@ -1,15 +1,15 @@
 import math
 import unittest
 
-from evaluation.metrics import (
+from src.ocr_harness.evaluation.metrics import (
     CharacterAccuracy,
     WordAccuracy,
     word_count_ratio,
     word_precision,
     word_recall,
 )
-from ocr_backbone.bounding_box import BoundingBox
-from ocr_backbone.ocr_result import OCRResult
+from src.ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from src.ocr_harness.ocr_backbone.ocr_result import OCRResult
 
 
 def _make_result(text: str) -> OCRResult:

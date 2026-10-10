@@ -1,6 +1,6 @@
 import unittest
 
-from ocr_backbone.polygon import Polygon
+from src.ocr_harness.ocr_backbone.polygon import Polygon
 
 
 class TestPolygon(unittest.TestCase):
