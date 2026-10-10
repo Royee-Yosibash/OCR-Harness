@@ -3,6 +3,8 @@
 OCR-Harness is a Python library for integrating OCR engines, applying image preprocessing, and evaluating recognition
 results against labeled data. Install the core library from PyPI, then add the OCR engines you need.
 
+Current version: **1.1.0**.
+
 ## Features
 
 - An extensible OCR interface for implementing and registering OCR engines.

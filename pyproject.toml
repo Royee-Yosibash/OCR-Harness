@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ocr-harness"
-version = "1.0.4"
+version = "1.1.0"
 description = "A unified toolkit for integrating, benchmarking, and comparing OCR engines with modular preprocessing and evaluation."
 readme = "README-PyPI.md"
 requires-python = ">=3.12"
