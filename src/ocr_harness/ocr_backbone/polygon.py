@@ -1,6 +1,6 @@
 from dataclasses import dataclass, replace
 
-from utils.serialize_utils import SerializableClass
+from src.ocr_harness.utils.serialize_utils import SerializableClass
 
 
 @dataclass
