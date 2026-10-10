@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from utils.statistics import (
+from src.ocr_harness.utils.statistics import (
     BOOTSTRAP_MIN_SAMPLE_SIZE,
     beta_ci,
     bootstrap_ci,
