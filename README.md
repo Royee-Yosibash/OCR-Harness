@@ -139,61 +139,51 @@ Current version: **1.0.4** (released 2026-10-11).
 
 Requires Python 3.12+.
 
-**Repo clone**
+### From a repository clone
 
-The project ships three independent optional dependency groups on top of the
-always-installed base. Pick any subset, combine them, or use `full` for
-everything.
-
-**Base** (core abstractions, evaluation primitives, no engines, no app):
+Install the library in editable mode without OCR engines or development tools:
 
 ```bash
 pip install -e .
 ```
 
-**OCRs** (all OCR engines: EasyOCR, PaddleOCR, PaddlePaddle, pytesseract):
+Install the library and repository development dependencies. This includes Flask for the tagging tool and the test and
+lint tools:
 
 ```bash
-pip install -e ".[ocrs]"
-```
-
-> Note: `pytesseract` also requires the system `tesseract` binary, e.g.
-> `sudo apt-get install -y tesseract-ocr` on Debian/Ubuntu.
-
-To install the repository code and development dependencies from a clone:
-
-```bash
-pip install -e ".[ocrs]" --group dev
+pip install -e . --group dev
 pre-commit install
 ```
 
-The `dev` dependency group includes Flask and the dependencies used by the tagging-app tests. The tool's source code is
-not part of the PyPI distribution. The end-to-end tests also require Chromium, installed with
-`playwright install --with-deps chromium`. Using the pytesseract engine requires the system Tesseract executable.
+To also install the optional OCR engines, combine the `ocrs` extra with the `dev` dependency group:
+
+```bash
+pip install -e ".[ocrs]" --group dev
+```
 
 All code style is enforced by [Ruff](https://docs.astral.sh/ruff/) via
 pre-commit hooks. After `pre-commit install`, every commit is automatically
 checked (lint + format). The ruff configuration lives in `pyproject.toml`
 under `[tool.ruff]`.
 
+The tagging tool's end-to-end tests also require Chromium, installed with `playwright install --with-deps chromium`.
 
-**From PyPi**
+### From PyPI
 
-The PyPI package installs the core library and its required dependencies. OCR engine packages are optional. The scripts,
-examples, tests, and dataset-tagging app are only available in a repository clone.
-
-Install the core library from PyPI:
+Install the core library and its required dependencies:
 
 ```bash
 pip install ocr-harness
 ```
 
-Install the core library with its optional OCR engines:
+Install the library with its optional OCR engines (EasyOCR, PaddleOCR, and pytesseract):
 
 ```bash
 pip install "ocr-harness[ocrs]"
 ```
 
+> Note: `pytesseract` also requires the system `tesseract` binary, e.g.
+> `sudo apt-get install -y tesseract-ocr` on Debian/Ubuntu.
 
 ## Project Structure
 
