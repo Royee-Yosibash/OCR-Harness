@@ -1,11 +1,13 @@
-# OCR-Toolkit
+# OCR-Harness
 
-This toolkit aims to create a unified "one-stop-shop" framework for integrating, benchmarking, and comparing OCR 
+OCR-Harness aims to create a unified "one-stop-shop" framework for integrating, benchmarking, and comparing OCR 
 engines. It aims to provide a seamless and clean interface to integrate multiple OCR engines for common and uncommon 
-OCR tasks. The OCR-Toolkit cleanly decouples the OCR engine, preprocessing pipeline, and the evaluation metrics into interchangeable
+OCR tasks.  cleanly decouples the OCR engine, preprocessing pipeline, and the evaluation metrics into interchangeable
 components allowing easy tinkering and experimentation for OCr configuration and engine evaluation. Using the toolkit 
 Integrating a new OCR engine requires one subclass with one method and the framework handles plugging image 
 preprocessing, coordinate remapping, metric computation, and result persistence automatically.
+
+This library code under "src" is published as `ocr-harness` on PyPI.
 
 ## Introduction
 
@@ -38,7 +40,7 @@ grid improve PaddleOCR?* -- and answers it across 70 real-world images.
 
 ### Compare configurations
 
-Start with the baseline -- `examples/paddleocr_baseline.json` runs PaddleOCR with
+Start with the baseline in `examples/paddleocr_baseline.json`, which runs PaddleOCR with
 its stock pipeline:
 
 ```json
@@ -55,18 +57,18 @@ its stock pipeline:
 }
 ```
 
-Now compare it to a configuration that is *exactly the same, plus one key* --
-`examples/paddleocr_split_image.json` adds a single `preprocess_methods` entry to
-split every image into a 2x2 grid before recognition. The diff is just:
+`examples/paddleocr_split_image.json` uses the same engine settings and adds a preprocessing step that splits each image
+into a 2x2 grid:
 
 ```json
- {
+{
+    "model_name": "PaddleOCRModule",
     "alias": "Paddle 2x2 Grid Split",
     ...
     "preprocess_methods": [
         {"name": "grid_split_image", "kwargs": {"grid": [2, 2]}}
     ]
- }
+}
 ```
 
 The toolkit handles the rest -- running each cell through the engine and
@@ -127,15 +129,17 @@ One command, two configs, and the trade-off is quantified.
   annotations, with per-image and aggregate results including confidence
   intervals and supporting visualizations
 - **Tagging tool** -- browser-based Flask UI for creating and editing
-  ground-truth bounding-box annotations.
+  ground-truth bounding-box annotations. **Not contained in the PyPi package**.
 
 ## Versioning
 
-Current version: **1.0.3** (released 2026-09-22).
+Current version: **1.0.4** (released 2026-10-11).
 
 ## Installation
 
 Requires Python 3.12+.
+
+**Repo clone**
 
 The project ships three independent optional dependency groups on top of the
 always-installed base. Pick any subset, combine them, or use `full` for
@@ -156,59 +160,71 @@ pip install -e ".[ocrs]"
 > Note: `pytesseract` also requires the system `tesseract` binary, e.g.
 > `sudo apt-get install -y tesseract-ocr` on Debian/Ubuntu.
 
-**Dataset Tagging App** (Flask UI plus its end-to-end test deps):
+To install the repository code and development dependencies from a clone:
 
 ```bash
-pip install -e ".[dataset-tagging-app]"
-```
-
-**Developer** (ruff, pytest, pre-commit):
-
-```bash
-pip install -e ".[dev]"
+pip install -e ".[ocrs]" --group dev
 pre-commit install
 ```
 
-**Full** (all groups above):
-
-```bash
-pip install -e ".[full]"
-```
-
-Combinations are supported, e.g. `pip install -e ".[ocrs,dev]"`.
+The `dev` dependency group includes Flask and the dependencies used by the tagging-app tests. The tool's source code is
+not part of the PyPI distribution. The end-to-end tests also require Chromium, installed with
+`playwright install --with-deps chromium`. Using the pytesseract engine requires the system Tesseract executable.
 
 All code style is enforced by [Ruff](https://docs.astral.sh/ruff/) via
 pre-commit hooks. After `pre-commit install`, every commit is automatically
 checked (lint + format). The ruff configuration lives in `pyproject.toml`
 under `[tool.ruff]`.
 
+
+**From PyPi**
+
+The PyPI package installs the core library and its required dependencies. OCR engine packages are optional. The scripts,
+examples, tests, and dataset-tagging app are only available in a repository clone.
+
+Install the core library from PyPI:
+
+```bash
+pip install ocr-harness
+```
+
+Install the core library with its optional OCR engines:
+
+```bash
+pip install "ocr-harness[ocrs]"
+```
+
+
 ## Project Structure
 
 ```
-ocr_backbone/       Core abstractions: OCRAbstract, OCRConfig, OCRResult, BoundingBox, InputImage
-ocr_modules/        Concrete OCR engine implementations (EasyOCR, PaddleOCR, pytesseract)
-evaluation/         Evaluation pipeline, metrics, ground truth, and plotting utilities
-utils/              Shared utilities (JSON I/O, dataset loading, statistics, serialization)
-scripts/            CLI tools: run_evaluation, draw_bboxes, tagging tool
-dataset/            Local dataset with images/ and ground_truth/ subdirectories
+src/ocr_harness/ocr_backbone/       Core abstractions: OCRAbstract, OCRConfig, OCRResult, BoundingBox, InputImage
+src/ocr_harness/ocr_modules/        Concrete OCR engine implementations (EasyOCR, PaddleOCR, pytesseract)
+src/ocr_harness/evaluation/         Evaluation pipeline, metrics, ground truth, and plotting utilities
+src/ocr_harness/utils/              Shared utilities (JSON I/O, dataset loading, statistics, serialization)
+scripts/            Evaluation and visualization commands
+tagging_tool/       Repository-only dataset annotation web app
 tests/              Unit, regression, and application tests
 ```
 
 ## Usage
 
-### Run Evaluation
+The commands in this section use scripts that are not included in the PyPI distribution. Clone the repository and install
+its development dependencies as described above.
 
-Execute all registered OCR modules against the dataset and generate metrics
-and plots:
+### Run evaluation
+
+Run all available OCR modules against the sample dataset and generate metrics and plots. The sample dataset downloads
+automatically the first time the default dataset path is used:
 
 ```bash
-python -m scripts.run_evaluation [--config config.json] [--dataset path/to/dataset] [--output-dir scripts/results]
+python -m scripts.run_evaluation [--config config.json] [--dataset path/to/dataset] [--output-dir scripts/results] [--overwrite]
 ```
 
 - `--config` accepts a single JSON config file or a directory of JSON configs.
   Without it, all registered OCR modules are evaluated with default settings.
-- `--dataset` defaults to the built-in `dataset/` directory. The directory must
-  contain `images/` and `ground_truth/` subdirectories with matching stems.
+- `--dataset` defaults to the sample dataset downloaded to a temporary directory. A custom dataset directory must
+  contain `images/` and `ground_truth/` subdirectories with matching file stems.
 - `--output-dir` defaults to `scripts/results`.
 - `--overwrite` re-runs OCR even when cached per-image results already exist.
 
@@ -222,7 +238,8 @@ Launch the browser-based annotation UI:
 python -m tagging_tool [--port 5000]
 ```
 
-Opens `http://localhost:5000` in the default browser.
+Opens `http://localhost:5000` in the default browser. This command works from a repository clone, not from the PyPI
+installation.
 
 ### Draw Bounding Boxes
 
@@ -247,8 +264,7 @@ A minimal configuration requires only `model_name` and `model_params`:
 }
 ```
 
-A full configuration can include preprocessing steps and a bounding-box
-validator:
+Configurations can include preprocessing steps and bounding-box validators:
 
 ```json
 {
@@ -256,11 +272,15 @@ validator:
     "model_params": {"languages": ["en"]},
     "preprocess_methods": [
       {"name": "contour_split_image"}
-    ]
+    ],
+    "detection_validators": []
 }
 ```
 
-Preprocessing method names are resolved from `ocr_backbone.image_preprocessing`
+
+
+
+Preprocessing method names are resolved from `ocr_harness.ocr_backbone.image_preprocessing`
 by default. Dotted paths (e.g. `"my_package.module.func"`) are dynamically
 imported. Optional `"kwargs"` are bound via `functools.partial`.
 
@@ -269,17 +289,16 @@ imported. Optional `"kwargs"` are bound via `functools.partial`.
 Subclass `OCRAbstract` and implement `_run_single`:
 
 ```python
-from ocr_backbone.ocr_abstract import OCRAbstract
-from ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone import OCRAbstract, OCRResult
 
 
 class MyOCRModule(OCRAbstract):
     def __init__(self, config):
         super().__init__(config)
-        # initialize your engine
+        # Initialize the engine.
 
     def _run_single(self, image, single_run_model_params):
-        # run inference, return OCRResult
+        # Run inference and return an OCRResult.
         ...
 ```
 
