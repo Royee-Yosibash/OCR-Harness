@@ -18,7 +18,7 @@ import argparse
 import logging
 import webbrowser
 
-from utils.logging_config import configure_logging
+from ocr_harness.utils.logging_config import configure_logging
 
 logger = logging.getLogger(__name__)
 

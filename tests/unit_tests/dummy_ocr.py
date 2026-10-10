@@ -1,9 +1,9 @@
 import numpy as np
 
-from ocr_backbone.bounding_box import BoundingBox
-from ocr_backbone.ocr_abstract import OCRAbstract
-from ocr_backbone.ocr_config import OCRConfig
-from ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone import OCRAbstract
+from ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
 
 
 class DummyOCR(OCRAbstract):

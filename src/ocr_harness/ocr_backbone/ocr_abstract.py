@@ -7,11 +7,11 @@ from typing import ClassVar
 
 import numpy as np
 
-from ocr_backbone.input_image import InputImage
-from ocr_backbone.ocr_config import OCRConfig
-from ocr_backbone.ocr_result import OCRResult
-from ocr_backbone.polygon import Polygon
-from utils.serialize_utils import register_unique
+from ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.utils.serialize_utils import register_unique
 
 logger = logging.getLogger(__name__)
 

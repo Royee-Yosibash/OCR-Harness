@@ -1,6 +1,6 @@
 """Diagnostics helpers for comparing ``OCRResult`` instances in tests."""
 
-from ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
 
 
 def ocr_result_mismatch_summary(

@@ -12,9 +12,9 @@ from pathlib import Path
 
 import cv2
 
-from ocr_backbone.ocr_result import OCRResult
-from utils.dataset_utils import load_image
-from utils.json_utils import load_json
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.utils.dataset_utils import load_image
+from ocr_harness.utils.json_utils import load_json
 
 # Colors are expressed in the project's RGB convention and converted to BGR
 # at the cv2 boundary inside ``draw_bboxes``.

@@ -8,7 +8,7 @@ import logging
 
 import numpy as np
 
-from utils.lazy_import import LazyModule
+from ocr_harness.utils.lazy_import import LazyModule
 
 logger = logging.getLogger(__name__)
 

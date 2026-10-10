@@ -5,12 +5,12 @@ import logging
 
 import numpy as np
 
-from ocr_backbone.bounding_box import BoundingBox
-from ocr_backbone.ocr_abstract import OCRAbstract
-from ocr_backbone.ocr_config import OCRConfig
-from ocr_backbone.ocr_result import OCRResult
-from utils.image_utils import to_rgb
-from utils.lazy_import import LazyModule
+from ocr_harness.ocr_backbone.bounding_box import BoundingBox
+from ocr_harness.ocr_backbone.ocr_abstract import OCRAbstract
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
+from ocr_harness.utils.image_utils import to_rgb
+from ocr_harness.utils.lazy_import import LazyModule
 
 logger = logging.getLogger(__name__)
 

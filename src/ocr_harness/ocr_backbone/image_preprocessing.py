@@ -3,9 +3,9 @@ from collections.abc import Callable
 import cv2
 import numpy as np
 
-from ocr_backbone.input_image import InputImage
-from utils.binarize import otsu_binarize
-from utils.image_utils import to_grayscale
+from ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.utils.binarize import otsu_binarize
+from ocr_harness.utils.image_utils import to_grayscale
 
 BINARIZE_METHODS = ("adaptive", "otsu")
 

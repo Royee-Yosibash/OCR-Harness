@@ -1,6 +1,7 @@
 """Utilities for loading images and ground_truth from the local dataset directory."""
 
 import logging
+import tempfile
 import urllib.request
 import zipfile
 from collections.abc import Iterator
@@ -9,12 +10,12 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from consts import APP_ROOT, IMAGE_EXTENSIONS
-from evaluation.ocr_ground_truth import OCRGroundTruth
-from ocr_backbone.polygon import Polygon
-from utils.json_utils import load_json
+from ocr_harness.consts import IMAGE_EXTENSIONS
+from ocr_harness.evaluation.ocr_ground_truth import OCRGroundTruth
+from ocr_harness.ocr_backbone.polygon import Polygon
+from ocr_harness.utils.json_utils import load_json
 
-DATASET_DIR = APP_ROOT / "dataset"
+DATASET_DIR = Path(tempfile.gettempdir()) / "ocr-harness" / "dataset"
 IMAGES_DIR = "images"
 TAGS_DIR = "ground_truth"
 
@@ -255,6 +256,7 @@ class OCRDataset:
         Raises:
             RuntimeError: If the download or extraction fails.
         """
+        target_dir.parent.mkdir(parents=True, exist_ok=True)
         zip_path = target_dir.parent / "dataset.zip"
         logger.info("Downloading dataset from %s", DATASET_SAMPLE_ZIP_URL)
         try:

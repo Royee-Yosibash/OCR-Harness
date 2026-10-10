@@ -1,13 +1,15 @@
 import sys
 import unittest
+from pathlib import Path
 
-from consts import APP_ROOT
+TESTS_DIR = Path(__file__).resolve().parent
+TEST_PATTERN = "test_*.py"
 
 
 def run_all_tests():
-    """Discover and run all test files named 'test_*.py' starting from the project root."""
+    """Discover and run all unit, regression, and application tests."""
     loader = unittest.TestLoader()
-    suite = loader.discover(start_dir=APP_ROOT, pattern="test_*.py")
+    suite = loader.discover(start_dir=str(TESTS_DIR), pattern=TEST_PATTERN, top_level_dir=str(TESTS_DIR.parent))
 
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)

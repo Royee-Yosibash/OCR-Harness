@@ -1,7 +1,7 @@
 from collections import Counter
 from dataclasses import dataclass, field
 
-from ocr_backbone.ocr_result import OCRResult
+from ocr_harness.ocr_backbone.ocr_result import OCRResult
 
 
 @dataclass

@@ -2,10 +2,9 @@ import re
 import tomllib
 import unittest
 from datetime import datetime
+from pathlib import Path
 
-from consts import APP_ROOT
-
-PYPROJECT_PATH = APP_ROOT / "pyproject.toml"
+PYPROJECT_PATH = Path(__file__).resolve().parents[2] / "pyproject.toml"
 SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+(?:(?:rc|alpha|beta)\d+)?$")
 ISO_DATE_FORMAT = "%Y-%m-%d"
 

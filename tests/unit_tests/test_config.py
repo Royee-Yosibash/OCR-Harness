@@ -6,13 +6,12 @@ from pathlib import Path
 
 import numpy as np
 
-from ocr_backbone import image_preprocessing
-from ocr_backbone.image_preprocessing import binarize
-from ocr_backbone.input_image import InputImage
-from ocr_backbone.ocr_config import OCRConfig, load_config
-from utils.callable_descriptors import resolve_callable_descriptor
-from utils.json_utils import save_json
-from utils.serialize_utils import TYPE_KEY, SerializableClass
+from ocr_harness.ocr_backbone import image_preprocessing
+from ocr_harness.ocr_backbone.image_preprocessing import binarize
+from ocr_harness.ocr_backbone.input_image import InputImage
+from ocr_harness.ocr_backbone.ocr_config import OCRConfig, load_config
+from ocr_harness.utils import TYPE_KEY, SerializableClass, resolve_callable_descriptor
+from ocr_harness.utils.json_utils import save_json
 
 
 def resolve_pp(descriptor):
@@ -78,13 +77,15 @@ class TestResolvePPMethod(unittest.TestCase):
         self.assertEqual(len(result.image.shape), 2)
 
     def test_dotted_path_resolves_function(self):
-        method = resolve_pp({"name": "ocr_backbone.image_preprocessing.binarize"})
+        method = resolve_pp({"name": "ocr_harness.ocr_backbone.image_preprocessing.binarize"})
         image = np.zeros((50, 50, 3), dtype=np.uint8)
         result = method(InputImage(image=image))
         self.assertEqual(len(result.image.shape), 2)
 
     def test_dotted_path_with_kwargs(self):
-        method = resolve_pp({"name": "ocr_backbone.image_preprocessing.binarize", "kwargs": {"method": "otsu"}})
+        method = resolve_pp(
+            {"name": "ocr_harness.ocr_backbone.image_preprocessing.binarize", "kwargs": {"method": "otsu"}}
+        )
         image = np.random.randint(0, 256, (50, 50, 3), dtype=np.uint8)
         result = method(InputImage(image=image))
         unique = set(np.unique(result.image))
@@ -96,7 +97,7 @@ class TestResolvePPMethod(unittest.TestCase):
 
     def test_dotted_path_bad_attribute_raises(self):
         with self.assertRaises(AttributeError):
-            resolve_pp({"name": "ocr_backbone.image_preprocessing.no_such_func"})
+            resolve_pp({"name": "ocr_harness.ocr_backbone.image_preprocessing.no_such_func"})
 
     def test_plain_name_bad_attribute_raises(self):
         with self.assertRaises(AttributeError):
@@ -120,7 +121,7 @@ class TestFromDictPreprocessMethods(unittest.TestCase):
         config = OCRConfig.from_dict(
             {
                 "model_name": "test",
-                "preprocess_methods": [{"name": "ocr_backbone.image_preprocessing.binarize"}],
+                "preprocess_methods": [{"name": "ocr_harness.ocr_backbone.image_preprocessing.binarize"}],
             }
         )
         image = np.zeros((50, 50, 3), dtype=np.uint8)
@@ -165,7 +166,7 @@ class TestFromDictPreprocessMethods(unittest.TestCase):
         """Import a preprocessing function from a temporary Python module."""
         module_src = textwrap.dedent("""\
             import numpy as np
-            from ocr_backbone.input_image import InputImage
+            from ocr_harness.ocr_backbone.input_image import InputImage
 
             def halve_height(input_image: InputImage) -> InputImage:
                 img = input_image.image
