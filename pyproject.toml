@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ocr-harness"
-version = "1.1.0"
+version = "1.1.1"
 description = "A unified toolkit for integrating, benchmarking, and comparing OCR engines with modular preprocessing and evaluation."
 readme = "README-PyPI.md"
 requires-python = ">=3.12"
@@ -18,6 +18,11 @@ dependencies = [
     "pillow==12.1.0",
     "scipy>=1.17.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Royee-Yosibash/OCR-Harness"
+Repository = "https://github.com/Royee-Yosibash/OCR-Harness"
+Issues = "https://github.com/Royee-Yosibash/OCR-Harness/issues"
 
 [project.optional-dependencies]
 ocrs = [
@@ -41,7 +46,7 @@ where = ["src"]
 include = ["ocr_harness*"]
 
 [tool.ocr-harness]
-release-date = "2026-10-11"
+release-date = "2026-10-15"
 
 [tool.ruff]
 target-version = "py312"
